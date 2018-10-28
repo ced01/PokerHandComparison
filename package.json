@@ -2,7 +2,7 @@
   "name": "poker-test",
   "version": "1.0.0",
   "description": "Poker hand comparison",
-  "main": "src/pokerhand.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest"
   },

@@ -205,5 +205,41 @@ function analyCombWithSameValue(p1,p2){
     return res;
 }
 
+/*function findSortedFiveCards(game,gameSortedVal,indexBegin,highCard){
+    var i = 0;
+    var straight = new Straight(new Array(),highCard);
+    if(highCard != null){
+        for(i=indexBegin;i<straight.nbOfCard-1;i++){
+            if(gameSortedVal[indexBegin].val + i == gameSortedVal[indexBegin + i].val){
+                straight.arr.push(game[i]);
+            }
+        }
+        straight.arr.push(highCard);
+    } else {
+        for(i=indexBegin;i<straight.nbOfCard;i++){
+            if(gameSortedVal[indexBegin].val + i == gameSortedVal[indexBegin + i].val){
+                straight.arr.push(game[i]);
+            }
+            
+        }
+    }
+    if(straight.arr.length == straight.nbOfCard){
+        return straight;
+    }
+    else{
+        return null;
+    }
+}
 
+function findStraight(occur) {
+
+    var i = 0, c = 0;
+    var straightArr = new Array();
+    var straight = new Straight(new Array());
+    var gameSorted = occur[2];
+ 
+    console.log(straight.arr);
+    occur[3].combinations.push(straight);
+    return occur[3].combinations;
+}*/
 
