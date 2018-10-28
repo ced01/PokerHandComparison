@@ -151,51 +151,51 @@ class DoublePair extends PokerCombination {
     compare(d){
         let sortedArr1 = null;
         let sortedArr2 = null;
-        let sortedArr3 = null;
-        let sortedArr4 = null;
+        let msg = 0;
+        sortedArr1 = finalSort(this.arr).desc(cd => cd.val);
+        sortedArr2 = finalSort(d.arr).desc(cd => cd.val);
 
-        sortedArr1 = finalSort(this.arr).desc(c => c.val);
-        sortedArr2 = finalSort(d.arr).desc(c => c.val);
-        sortedArr3 = finalSort(this.arr).asc(c => c.val);
-        sortedArr4 = finalSort(d.arr).asc(c => c.val);
+        console.log(this.arr);
+        console.log(sortedArr1);
+        console.log(sortedArr2);
 
-        console.log(sortedArr3);
-        console.log(sortedArr4);
-
-        if(sortedArr3[0].val == 1 && sortedArr4[0].val != 1){
-            return 1;
+        if(sortedArr1[sortedArr1.length - 1].val == 1 && sortedArr2[sortedArr2.length - 1].val != 1){
+            msg = 1;
         }
-        if(sortedArr4[0].val == 1 && sortedArr3[0].val != 1){
-            return 2;
+        if(sortedArr1[sortedArr1.length - 1].val != 1 && sortedArr2[sortedArr2.length - 1].val == 1){
+            msg = 2;
         }
-        if(sortedArr3[0].val == 1 && sortedArr4[0].val == 1){
-            if(sortedArr3[2].val > sortedArr4[2].val){
-                return 1;
-            }else if (sortedArr4[2].val > sortedArr3[2].val){
-                return 1;
+        if(sortedArr1[sortedArr1.length - 1].val == 1 && sortedArr2[sortedArr2.length - 1].val == 1){
+            if(sortedArr1[2].val > sortedArr2[2].val){
+                msg = 1;
+            }
+            if (sortedArr2[2].val > sortedArr1[2].val){
+                msg = 2;
             }else {
-                return 3;
+                msg = 3;
             }
         }
-        if(sortedArr4[0].val != 1 && sortedArr3[0].val != 1){
+        if(sortedArr1[0].val != 1 && sortedArr2[0].val != 1){
             if(sortedArr1[0].val > sortedArr2[0].val){
-                return 1;
-            }
-            else if(sortedArr2[0].val > sortedArr1[0].val){
-                return 2;
-            }else{
-                return 3;
+                msg = 1;
+            } 
+            if(sortedArr2[0].val > sortedArr1[0].val){
+                msg = 2;
             }
             if(sortedArr2[0].val == sortedArr1[0].val){
-                if(sortedArr1[1].val > sortedArr2[1].val){
-                    return 1;
-                }else if(sortedArr2[1].val > sortedArr1[1].val){
-                    return 2;
-                }else {
-                    return 3;
+                if(sortedArr1[2].val > sortedArr2[2].val){
+                    msg = 1;
                 }
+                if(sortedArr2[2].val > sortedArr1[2].val){
+                    msg = 2;
+                }else {
+                    msg = 3;
+                }
+            }else {
+                msg = 3; 
             }
         }
+        return msg;
     }
 }
 

@@ -26,7 +26,6 @@ function occur(pokerHand,game,sortByvalue) {
     var a = [], b = [], prev, i = 0;
     var arr = null;
     var arr2 = new Array();
-    var straight = new Array();
     
     if(sortByvalue){
         arr = (new Pair(null,null)).sortArrOfCardAccordingToval(pokerHand,game);
@@ -56,7 +55,7 @@ function occur(pokerHand,game,sortByvalue) {
 
 function findFTPFu(occur) {
 
-    var i = 0, c = 0;
+    var i = 0;
     var threeOfAkind = new ThreeOfAkind(new Array()),
         fourOfAkind = new FourOfAKind(new Array()), 
         pair = new Pair(new PokerCard(0,0),new PokerCard(0,0),new Array()),
@@ -95,7 +94,7 @@ function findFTPFu(occur) {
     });
 
     if(pair.arr.length > 2){
-        doublePair.arr.push(pair.arr);
+        doublePair.arr = pair.arr;
         pair.arr = new Array();
     }
     if(threeOfAkind.arr.length >= 1 && pair.arr.length >= 1){
@@ -205,9 +204,9 @@ function analyCombWithSameValue(p1,p2){
     return res;
 }
 
-/*function findSortedFiveCards(game,gameSortedVal,indexBegin,highCard){
+function findSortedFiveCards(game,gameSorVal){
     var i = 0;
-    var straight = new Straight(new Array(),highCard);
+    var straight = new Straight(new Array());
     if(highCard != null){
         for(i=indexBegin;i<straight.nbOfCard-1;i++){
             if(gameSortedVal[indexBegin].val + i == gameSortedVal[indexBegin + i].val){
@@ -241,5 +240,5 @@ function findStraight(occur) {
     console.log(straight.arr);
     occur[3].combinations.push(straight);
     return occur[3].combinations;
-}*/
+}
 

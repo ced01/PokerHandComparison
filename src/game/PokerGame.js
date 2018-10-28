@@ -1,9 +1,8 @@
 const pokerCard = new PokerCard(0,0);
 
-
 class PokerGame {
 
-	constructor(firstCard,secondCard,thirdCard,fourthCard,fifthCard) {
+	constructor() {
         this.deck = new Array();
 		this.firstCard = pokerCard;
         this.secondCard = pokerCard;
