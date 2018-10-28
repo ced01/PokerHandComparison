@@ -4,6 +4,7 @@
   "description": "Poker hand comparison",
   "main": "app.js",
   "scripts": {
+    "start": "node ap.js",
     "test": "jest"
   },
   "keywords": [
