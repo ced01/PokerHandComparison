@@ -1,0 +1,39 @@
+var playerOneHand = new PokerHand();
+var playerTwoHand = new PokerHand();
+
+var game = new PokerGame();
+
+
+$(document).ready(function(){
+    $(".btn-play").on("click",function(){
+        
+        //52 cards generation*
+        game.generateDeck();
+        
+        //Hand are dealt
+        playerOneHand.firstCard = game.pickACard();
+        playerTwoHand.firstCard = game.pickACard();
+        playerOneHand.secondCard = game.pickACard();
+        playerTwoHand.secondCard = game.pickACard();
+
+        //Game on the table is provided they are betting for each chosen card*/
+        game.dealTheGameOnTheTable();
+        
+       /* while(playerOneHand.regenerateCards(playerTwoHand) == true){
+            playerOneHand.generate();
+            playerTwoHand.generate();
+        }*/    
+
+        let str1 = game.firstCard.val + " " + game.firstCard.siu;
+        let str2 = game.secondCard.val + " " + game.secondCard.siu;
+        let str3 = game.thirdCard.val+ " " + game.thirdCard.siu;
+        let str4 = game.fourthCard.val + " " + game.fourthCard.siu;
+        let str5 = game.fifthCard.val + " " + game.fifthCard.siu;
+
+        $("#playerOnefirstCard").val(playerOneHand.firstCard.val+" "+playerOneHand.firstCard.siu);
+        $("#playerOneSecondCard").val(playerOneHand.secondCard.val+" "+playerOneHand.secondCard.siu);
+        $("#playerTwofirstCard").val(playerTwoHand.firstCard.val+" "+playerTwoHand.firstCard.siu);
+        $("#playerTwoSecondCard").val(playerTwoHand.secondCard.val+" "+playerTwoHand.secondCard.siu);
+        $("#five-cards").val(str1 + " " + str2 + " " + str3 + " " + str4 + " " + str5);
+    })
+});

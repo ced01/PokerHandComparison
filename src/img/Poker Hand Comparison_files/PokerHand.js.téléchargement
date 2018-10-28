@@ -1,0 +1,79 @@
+const Result = {
+		WIN: 1,
+		LOSS: 2,
+		TIE: 3
+};
+
+class PokerHand {
+	
+	constructor() {
+		this.firstCard = new PokerCard(0,"");
+		this.secondCard = new PokerCard(0,"");
+	}
+
+	generate(){
+		this.firstCard.generateRamdomCard();
+        this.secondCard.generateRamdomCard();
+	}
+
+	compareWith() {
+		return Result.TIE;
+	}
+
+	regenerateCards(hand2){
+		let cardsRegeneration = false;
+
+		if( this.hasTwoIdenticalCards(this) || this.hasTwoIdenticalCards(hand2) || this.twoDifferentHandsHaveOneCardIncommun(hand2)){
+			cardsRegeneration = true;
+		}	
+		return cardsRegeneration;
+	}
+
+	hasTwoIdenticalCards(hand){
+		let AnHandAsTheSameCards = false; /* 7 C  7 C */
+		
+		if(this.firstCard.isEqual(this.secondCard)){
+			AnHandAsTheSameCards = true;
+		}
+		return AnHandAsTheSameCards;
+	}
+
+	twoDifferentHandsHaveOneCardIncommun(hand2){
+		
+		let hand1AndHandTwoHasOneCardInCommon = false; /* 3 C  6 C */
+													  /* 5 C  3 C */
+	 	if(this.firstCard.isEqual(hand2.firstCard)){
+			hand1AndHandTwoHasOneCardInCommon = true;
+		}
+
+		if(this.firstCard.isEqual(hand2.secondCard)){
+			hand1AndHandTwoHasOneCardInCommon = true;
+		 }
+		 
+		if(this.secondCard.isEqual(hand2.firstCard)){
+			hand1AndHandTwoHasOneCardInCommon = true;
+		}
+		
+		if(this.secondCard.isEqual(hand2.secondCard)){
+			hand1AndHandTwoHasOneCardInCommon = true;
+	 	} 
+		return hand1AndHandTwoHasOneCardInCommon;
+	}
+
+	get firstCard() {
+		return this._firstCard;
+	}
+	get secondCard() {
+		return this._secondCard;
+	}
+
+	set firstCard(val) {
+		this._firstCard = val;
+	}
+	set secondCard(val) {
+		this._secondCard = val;
+	}
+}
+
+
+

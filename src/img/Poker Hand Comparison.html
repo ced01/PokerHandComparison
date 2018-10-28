@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/cedric/Desktop/Grabyo-test/js-kata/src/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./Poker Hand Comparison_files/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Poker Hand Comparison_files/index.css">
+
+    <title>Poker Hand Comparison</title>
+  </head>
+  <body>
+    <div class="container-fluid"><br>
+        <h1 class="title">Poker Hand Comparison</h1>
+        <div class="row requirements content">
+            <div class="col-md-6">
+                <h2>Requirements</h2><br>
+                The characteristics of the string of cards are: A space is used as card seperator Each card consists of two characters (not case sensitive)<br> 
+                The first character is the value of the card, valid characters are: 2, 3, 4, 5, 6, 7, 8, 9, T(en), J(ack), Q(ueen), K(ing), A(ce)<br> 
+                The second character represents the suit, valid characters are: S(pades), H(earts), D(iamonds), C(lubs)
+            </div>
+            <div class="col-md-6">
+                <h2>Fill the player's hand and game</h2><br>
+                <form>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <label>Player 1</label>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <input id="playerOnefirstCard" type="text" class="form-control" placeholder="First card">
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <input id="playerOneSecondCard" type="text" class="form-control" placeholder="Second card">
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <label>Player 2</label>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <input id="playerTwofirstCard" type="text" class="form-control" placeholder="First card">
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <input id="playerTwoSecondCard" type="text" class="form-control" placeholder="Second card">
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                                <label>Game</label>
+                        </div>
+                        <div class="col-md-10 col-sm-10 Game">
+                            <input id="five-cards" type="text" class="form-control" placeholder="Five cards">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-6 play">
+                    <div class="btn-play">Play</div>
+            </div>
+            <div class="col-md-6 result">
+                <div class="txt-result">Result
+                    <span class="resultValue">? ?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./Poker Hand Comparison_files/jquery-3.3.1.min.js.téléchargement"></script>
+    <script src="./Poker Hand Comparison_files/popper.min.js.téléchargement" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="./Poker Hand Comparison_files/bootstrap.min.js.téléchargement" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Needed JavaScript -->
+    <script src="./Poker Hand Comparison_files/librairy.js.téléchargement"></script>
+    <script src="./Poker Hand Comparison_files/PokerCard.js.téléchargement"></script>
+    <script src="./Poker Hand Comparison_files/PokerHand.js.téléchargement"></script> 
+    <script src="./Poker Hand Comparison_files/PokerGame.js.téléchargement"></script>
+    <script src="./Poker Hand Comparison_files/main.js.téléchargement"></script>  
+  
+</body></html>
