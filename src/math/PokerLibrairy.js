@@ -137,12 +137,11 @@ function findFTPFu(occur) {
 
 function findFlush(occur) {
 
-    var i = 0, c = 0;
-    var flush = new Flush( new Array());
-
-    var occurences = occur[1];
-    var values = occur[0];
-    var gsorter = occur[2];
+    let i = 0,
+    flush = new Flush( new Array()),
+    occurences = occur[1],
+    values = occur[0],
+    gsorter = occur[2];
     
     occurences.forEach(o => {
         if(o >= 5){

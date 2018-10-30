@@ -19,10 +19,10 @@ $(document).ready(function(){
         game.generateDeck();
         
         //Hand are dealt
-        playerOneHand.firstCard = new PokerCard(1,3);
-        playerTwoHand.firstCard = new PokerCard(1,4);
-        playerOneHand.secondCard = new PokerCard(2,1);
-        playerTwoHand.secondCard = new PokerCard(2,4);
+        playerOneHand.firstCard = game.pickACard();
+        playerTwoHand.firstCard = game.pickACard();
+        playerOneHand.secondCard = game.pickACard();
+        playerTwoHand.secondCard = game.pickACard();
 
         //Game on the table is provided they are betting for each chosen card*/
         game.dealTheGameOnTheTable();

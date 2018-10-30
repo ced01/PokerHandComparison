@@ -255,17 +255,16 @@ class Flush extends PokerCombination {
     }
 
     compare(flu){
-        let sortedArr1desc = finalSort(this.arr).desc(c => c.val);
-        let sortedArr2desc = finalSort(flu.arr).desc(c => c.val);
-        let sortedArr1asc = finalSort(this.arr).asc(c => c.val);
-        let sortedArr2asc = finalSort(flu.arr).asc(c => c.val);
+        let sortedArr1asc = finalSort(this.arr).asc(c => c.val), 
+        sortedArr2asc = finalSort(flu.arr).asc(c => c.val),
+        
+        bestCard1 = sortedArr1asc[sortedArr1asc.length - 1].val,
+        bestCard2 = sortedArr2asc[sortedArr2asc.length - 1].val,
+        firstcard1 = sortedArr1asc[0].val,
+        firstcard2 = sortedArr2asc[0].val;
 
-        console.log(sortedArr1desc);
-
-        let bestCard1 = sortedArr1desc[0].val;
-        let bestCard2 = sortedArr2desc[0].val;
-        let firstcard1 = sortedArr1asc[0].val;
-        let firstcard2 = sortedArr2asc[0].val;
+        console.log(firstcard1);
+        console.log(firstcard2);
 
         if(firstcard1 == 1 && firstcard2 != 1){
             console.log("P1 has an higher flush than P2");
@@ -305,11 +304,11 @@ class Full extends PokerCombination {
         this._arr = arr;
     }
     compare(ful){
-        let msg = 3;
-        let threeOkVal1 = this.arr[0].val;
-        let threeOkVal2 = ful.arr[0].val;
-        let pVal1 = this.arr[3].val;
-        let pVal2 = ful.arr[3].val;
+        let msg = 3,
+        threeOkVal1 = this.arr[0].val,
+        threeOkVal2 = ful.arr[0].val,
+        pVal1 = this.arr[3].val,
+        pVal2 = ful.arr[3].val;
 
         if(threeOkVal1 == 1 && threeOkVal2 != 1){
             console.log("P1 has an higher full than P2");
