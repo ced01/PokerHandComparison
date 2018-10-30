@@ -305,43 +305,44 @@ class Full extends PokerCombination {
         this._arr = arr;
     }
     compare(ful){
-        let threeOkVal1 = this.arr[0][0][0].val;
-        let threeOkVal2 = ful.arr[0][0][0].val;
-        let pVal1 = this.arr[0][1][0].val;
-        let pVal2 = ful.arr[0][1][0].val;
+        let msg = 3;
+        let threeOkVal1 = this.arr[0].val;
+        let threeOkVal2 = ful.arr[0].val;
+        let pVal1 = this.arr[3].val;
+        let pVal2 = ful.arr[3].val;
 
         if(threeOkVal1 == 1 && threeOkVal2 != 1){
             console.log("P1 has an higher full than P2");
-            return 1;
+            msg = 1;
         } else if (threeOkVal2 != 1 && threeOkVal1 == 1){
             console.log("P2 has an higher full than P1");
-            return 2;
+            msg = 2;
         }else{
-
             if(threeOkVal1 > threeOkVal2){
                 console.log("P1 has an higher full than P2");
-                return 1;
+                msg = 1;
             }
             if(threeOkVal2 > threeOkVal1){
                 console.log("P2 has an higher full than P1");
-                return 1;
+                msg = 1;
             }
             if(threeOkVal1 == threeOkVal2){
                 console.log("P1 and P2 has the same three of a kind in the full");
                 if(pVal1> pVal2){
                     console.log("P1 and P2 has the same three of a kind but P1 has a better pair");
-                    return 1;
+                    msg = 1;
                 }
                 if(pVal2 > pVal2){
                     console.log("P1 and P2 has the same three of a kind but P2 has a better pair");
-                    return 2;
+                    msg = 2;
                 }
                 if(pVal2 == pVal2) {
                     console.log("P2 and P2 has exactly the same full !!!");
-                    return 3;
+                    msg = 3;
                 }
             }
         }
+        return msg;
     }
 }
 

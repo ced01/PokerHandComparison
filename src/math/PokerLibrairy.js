@@ -55,17 +55,16 @@ function occur(pokerHand,game,sortByvalue) {
 
 function findFTPFu(occur) {
 
-    var i = 0;
-    var threeOfAkind = new ThreeOfAkind(new Array()),
+    let i = 0, l = 0,
+        threeOfAkind = new ThreeOfAkind(new Array()),
         fourOfAkind = new FourOfAKind(new Array()), 
         pair = new Pair(new PokerCard(0,0),new PokerCard(0,0),new Array()),
         full = new Full(new Array()),
-        doublePair = new DoublePair(new Array());
+        doublePair = new DoublePair(new Array()),
+        occurences = occur[1],
+        values = occur[0],
+        gsorted = occur[2];
 
-
-    var occurences = occur[1];
-    var values = occur[0];
-    var gsorted = occur[2];
     
     occurences.forEach(o => {
         if(o == 4){
@@ -93,12 +92,30 @@ function findFTPFu(occur) {
         i++;
     });
 
+    l = threeOfAkind.arr.length;
+
     if(pair.arr.length > 2){
         doublePair.arr = pair.arr;
         pair.arr = new Array();
     }
-    if(threeOfAkind.arr.length >= 1 && pair.arr.length >= 1){
+    if(threeOfAkind.arr.length >= 1 && pair.arr.length == 1){
         full.arr.push(new Array(threeOfAkind.arr,pair.arr));   
+        
+    }else if(l >= 1 && pair.arr.length == 0){
+        if(threeOfAkind.arr[0].val != 1){
+            full.arr.push(threeOfAkind.arr[l - 1]);
+            full.arr.push(threeOfAkind.arr[l - 2]);
+            full.arr.push(threeOfAkind.arr[l - 3]);
+            full.arr.push(threeOfAkind.arr[0]);
+            full.arr.push(threeOfAkind.arr[1]);
+
+        }else{
+            full.arr.push(threeOfAkind.arr[0]);
+            full.arr.push(threeOfAkind.arr[1]);
+            full.arr.push(threeOfAkind.arr[2]);
+            full.arr.push(threeOfAkind.arr[l - 1]);
+            full.arr.push(threeOfAkind.arr[l - 2]);
+        }
     }
     if(full.arr.length != 0){
         occur[3].combinations.push(full);
