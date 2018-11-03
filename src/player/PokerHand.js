@@ -20,9 +20,11 @@ class PokerHand {
 	}
 
 	findHihestCombs(){
-		let arrSorted = finalSort(this.combinations).desc(c => c.value), i = 0;
-		let finalArr = new Array();
-		let finalComb = null;
+		let arrSorted = finalSort(this.combinations).desc(c => c.value), i = 0,
+		finalArr = new Array(),
+		finalComb = null;
+		
+
 		finalArr.push(arrSorted[0]);
 		for( i = 1; i < arrSorted.length - 1;i++){
 			if(arrSorted[0].value == arrSorted[i].value){
@@ -35,8 +37,9 @@ class PokerHand {
 		return finalComb;
 	}
 	compareWith(p2) {
-		let res = Result.TIE;
-		let msg = "";
+		let  res = Result.TIE,
+			 msg = "",
+			 _compare = 3;
 
 		this.highestCombination = this.findHihestCombs();
 		if(p2 instanceof PokerHand){
@@ -52,7 +55,8 @@ class PokerHand {
 				else if(p2.highestCombination.value == this.highestCombination.value) {
 					// If the highest combination of the two player have the same value we analyse their game
         			//Find High card if nothing else is found or the two player has the same game and potentialy to comapare their hand
-					res = findHighCard(playerOneHand,playerTwoHand,analyCombWithSameValue(this,p2));;
+					_compare = analyCombWithSameValue(this,p2);
+					res = findHighCard(playerOneHand,playerTwoHand,_compare);;
 				}
 			}
 			if(this.highestCombination != undefined && p2.highestCombination == undefined){

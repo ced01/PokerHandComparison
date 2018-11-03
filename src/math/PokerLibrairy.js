@@ -23,24 +23,25 @@ function findThreeOfKind(pairFoundedArr) {
 }
 
 function occur(pokerHand,game,sortByvalue) {
-    var a = [], b = [], prev, i = 0;
-    var arr = null;
-    var arr2 = new Array();
+    let a = [], b = [], prev, i = 0,
+        arr = null,
+        arr2 = new Array(),
+        p = new Pair(null);
     
     if(sortByvalue){
-        arr = (new Pair(null,null)).sortArrOfCardAccordingToval(pokerHand,game);
+        arr = p.sortArrOfCardAccordingToval(pokerHand,game);
         arr.forEach(c=> {
             arr2.push(c.val);
             
         });
     } else {
-        arr = (new Pair(null,null)).sortArrOfCardAccordingTosiut(pokerHand,game);
+        arr = p.sortArrOfCardAccordingTosiut(pokerHand,game);
         arr.forEach(c=> {
             arr2.push(c.siu);
         });
     }
    
-    for ( var i = 0; i < arr2.length; i++ ) {
+    for (i = 0; i < arr2.length; i++ ) {
         if ( arr2[i] !== prev ) {
             a.push(arr2[i]);
             b.push(1);
@@ -58,7 +59,7 @@ function findFTPFu(occur) {
     let i = 0, l = 0,
         threeOfAkind = new ThreeOfAkind(new Array()),
         fourOfAkind = new FourOfAKind(new Array()), 
-        pair = new Pair(new PokerCard(0,0),new PokerCard(0,0),new Array()),
+        pair = new Pair(new Array()),
         full = new Full(new Array()),
         doublePair = new DoublePair(new Array()),
         occurences = occur[1],
@@ -98,24 +99,19 @@ function findFTPFu(occur) {
         doublePair.arr = pair.arr;
         pair.arr = new Array();
     }
-    if(threeOfAkind.arr.length >= 1 && pair.arr.length == 1){
-        full.arr.push(new Array(threeOfAkind.arr,pair.arr));   
-        
-    }else if(l >= 1 && pair.arr.length == 0){
-        if(threeOfAkind.arr[0].val != 1){
-            full.arr.push(threeOfAkind.arr[l - 1]);
-            full.arr.push(threeOfAkind.arr[l - 2]);
-            full.arr.push(threeOfAkind.arr[l - 3]);
-            full.arr.push(threeOfAkind.arr[0]);
-            full.arr.push(threeOfAkind.arr[1]);
-
-        }else{
-            full.arr.push(threeOfAkind.arr[0]);
-            full.arr.push(threeOfAkind.arr[1]);
-            full.arr.push(threeOfAkind.arr[2]);
-            full.arr.push(threeOfAkind.arr[l - 1]);
-            full.arr.push(threeOfAkind.arr[l - 2]);
+    if(l >= 1){
+        if(pair.arr.length >= 1){
+            full.arr.push(threeOfAkind.arr,pair.arr);  
         }
+        if(pair.arr.length == 0 && l == 2){
+            if(threeOfAkind.arr[0].val != threeOfAkind.arr[l - 1].val){
+                if(threeOfAkind.arr[0].val != 1){
+                    full.arr.push(threeOfAkind.arr[l - 1],threeOfAkind.arr[l - 2],threeOfAkind.arr[l - 3],threeOfAkind.arr[0],threeOfAkind.arr[1]);
+                }else{
+                    full.arr.push(threeOfAkind.arr[0],threeOfAkind.arr[1],threeOfAkind.arr[2],threeOfAkind.arr[l - 1],threeOfAkind.arr[l - 2]);
+                }
+            }
+        }  
     }
     if(full.arr.length != 0){
         occur[3].combinations.push(full);
@@ -162,50 +158,51 @@ function findFlush(occur) {
 }
 
 function findHighCard(p1,p2,gameOutput){
-    let comb1 = p1.combinations;
-    let comb2 = p2.combinations;
+    let comb1 = p1.combinations,
+        comb2 = p2.combinations,
+        ph1 = finalSort([p1.firstCard,p1.secondCard]).desc(v => v.val),
+        ph2 = finalSort([p2.firstCard,p2.secondCard]).desc(v => v.val),
+        ph3 = finalSort([p1.firstCard,p1.secondCard]).asc(v => v.val),
+        ph4 = finalSort([p2.firstCard,p2.secondCard]).asc(v => v.val),
+        HighCardFound = new HighCard(new PokerCard()),
+        msg = 3;
 
-    let ph1 = finalSort([p1.firstCard,p1.secondCard]).desc(v => v.val);
-    let ph2 = finalSort([p2.firstCard,p2.secondCard]).desc(v => v.val);
-    let ph3 = finalSort([p1.firstCard,p1.secondCard]).asc(v => v.val);
-    let ph4 = finalSort([p2.firstCard,p2.secondCard]).asc(v => v.val);
-
-    let HighCardFound = new HighCard(new PokerCard());
     if(comb1.length == 0 && comb2.length == 0 || gameOutput == 3){
         if(ph4[0].val != 1 && ph3[0].val != 1 || ph4[0].val == 1 && ph3[0].val == 1){
             if(ph1[0].val > ph2[0].val){
                 HighCardFound.card = ph1[0];
                 p1.combinations.push(HighCardFound);
-                return 1;
+                msg = 1;
             }
             if(ph2[0].val > ph1[0].val){
                 HighCardFound.card = ph2[0];
                 p2.combinations.push(HighCardFound);
-                return 2;
+                msg = 2;
             }
             if(ph1[0].val == ph2[0].val && ph4[0].val != 1 && ph3[0].val != 1){
                 if(ph1[1].val > ph2[1].val){
                     HighCardFound.card = ph1[1];
                     p1.combinations.push(HighCardFound);
-                    return 1;
+                    msg = 1;
                 }
                 if(ph2[1].val > ph1[1].val){
                     HighCardFound.card = ph2[1].val;
                     p1.combinations.push(HighCardFound);
-                    return 2;
+                    msg = 2;
                 }
                 if(ph1[1].val == ph2[1].val){
-                    return 3;
+                    msg = 3;
                 }
             }
         }
         if(ph4[0].val == 1 && ph3[0].val != 1){
-            return 2;
+            msg = 2;
         }
         if(ph3[0].val == 1 && ph4[0].val != 1){
-            return 1;
+            msg = 1;
         }
     }
+    return msg;
 }
 function analyCombWithSameValue(p1,p2){
     let res = 3;
@@ -235,7 +232,6 @@ function findSortedFiveCards(game,gameSorVal){
             if(gameSortedVal[indexBegin].val + i == gameSortedVal[indexBegin + i].val){
                 straight.arr.push(game[i]);
             }
-            
         }
     }
     if(straight.arr.length == straight.nbOfCard){

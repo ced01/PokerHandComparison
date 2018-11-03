@@ -1,4 +1,4 @@
-let game = new PokerGame();
+const game = new PokerGame();
 let playerOneHand = new PokerHand(1);
 let playerTwoHand = new PokerHand(2);
 
@@ -19,10 +19,15 @@ $(document).ready(function(){
         game.generateDeck();
         
         //Hand are dealt
-        playerOneHand.firstCard = game.pickACard();
+        /*playerOneHand.firstCard = game.pickACard();
         playerTwoHand.firstCard = game.pickACard();
         playerOneHand.secondCard = game.pickACard();
-        playerTwoHand.secondCard = game.pickACard();
+        playerTwoHand.secondCard = game.pickACard();*/
+
+        playerOneHand.firstCard = new PokerCard(3,4);
+        playerTwoHand.firstCard = new PokerCard(11,1);
+        playerOneHand.secondCard = new PokerCard(3,1);
+        playerTwoHand.secondCard = new PokerCard(10,1);
 
         //Game on the table is provided they are betting for each chosen card*/
         game.dealTheGameOnTheTable();

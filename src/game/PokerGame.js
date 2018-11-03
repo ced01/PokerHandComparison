@@ -34,11 +34,17 @@ class PokerGame {
     }
 
     dealTheGameOnTheTable(){
-        this.firstCard = this.pickACard();
+        /*this.firstCard = this.pickACard();
         this.secondCard = this.pickACard();
         this.thirdCard = this.pickACard();
         this.fourthCard = this.pickACard();
-        this.fifthCard = this.pickACard();
+        this.fifthCard = this.pickACard();*/
+
+        this.firstCard = new PokerCard(1,1);
+        this.secondCard = new PokerCard(11,3);
+        this.thirdCard = new PokerCard(9,2);
+        this.fourthCard = new PokerCard(9,4);
+        this.fifthCard = new PokerCard(9,1);
     }
 
 	compareWith() {

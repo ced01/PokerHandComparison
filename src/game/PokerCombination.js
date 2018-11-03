@@ -47,20 +47,19 @@ class FourOfAKind extends PokerCombination {
     }
 
     compare(f){
-        let val1 = this.arr[0][0];
-        let val2 = f.arr[0][0];
+        let val1 = this.arr[0][0],
+            val2 = f.arr[0][0],
+            msg = 3;
         
         if(val1 != 1 && val2 != 1){
             if(val1 > val2){
-                return 1;
-            }else if(val1 < val2){
-                return 2;
-            }else{
-                return 3;
+                msg = 1;
             }
-        }else {
-            return 3;
+            if(val1 < val2){
+                msg = 2;
+            }
         }
+        return msg;
     }
     
 }
@@ -78,25 +77,11 @@ class HighCard extends PokerCombination {
 }
 
 class Pair extends PokerCombination {
-    constructor(card1,card2,arr){
+    constructor(arr){
         super(2,2);
-        this.card1 = card1;
-        this.card2 = card2;
         this.arr = arr;
     }
 
-    get card1(){
-        return this._card1;
-    }
-    set card1(card1){
-        this._card1 = card1;
-    }
-    get card2(){
-        return this._card1;
-    }
-    set card2(card2){
-        this._card2 = card2;
-    }
     get arr(){
         return this._arr;
     }
@@ -104,36 +89,27 @@ class Pair extends PokerCombination {
         this._arr = arr;
     }
     
-    isIdentical(p){
-        //console.log(this);
-        let arr = null;
-        if(this.card1.hasEqualValue(p.card1) ){
-            arr = new Array();
-            arr.push(this,p);
-        }
-        return arr;
-    }
     compare(p){
-        if(this.arr[0].val == p.arr[0].val){
-            console.log("P1 and P2 has the exact same pair");
-            return 3;
+        let msg = 3;
+        
+        if(this.arr[0].val > p.arr[0].val){
+            console.log("P1 has a better pair than P2");
+            msg = 1;
+        } 
+        if(this.arr[0].val < p.arr[0].val){
+            console.log("P2 has a better pair than P1");
+            msg = 2;
         }
         if(this.arr[0].val == 1 && p.arr[0].val != 1){
             console.log("P1 has a pair of A");
-            return 1;
-        }else if(this.arr[0].val != 1 && p.arr[0].val == 1) {
+            msg = 1;
+        }
+        if(this.arr[0].val != 1 && p.arr[0].val == 1) {
             console.log("P2 has a pair of A");
-            return 2;
+            msg = 2;
         }
-        else if(this.arr[0].val > p.arr[0].val){
-            console.log("P1 has a better pair than P2");
-            return 1;
-        } else {
-            console.log("P2 has a better pair than P1");
-            return 2;
-        }
+        return msg;
     }
-    
 }
 
 class DoublePair extends PokerCombination {
@@ -149,9 +125,9 @@ class DoublePair extends PokerCombination {
     }
 
     compare(d){
-        let sortedArr1 = null;
-        let sortedArr2 = null;
-        let msg = 0;
+        let sortedArr1 = null,
+        sortedArr2 = null,
+        msg = 3;
         sortedArr1 = finalSort(this.arr).desc(cd => cd.val);
         sortedArr2 = finalSort(d.arr).desc(cd => cd.val);
 
@@ -212,20 +188,24 @@ class ThreeOfAkind extends PokerCombination {
     }
 
     compare(t){
-        let val1 = this.arr[0][0];
-        let val2 = t.arr[0][0];
+        let val1 = this.arr[0][0],
+            val2 = t.arr[0][0],
+            msg = 3;
         
         if(val1 != 1 && val2 != 1){
             if(val1 > val2){
-                return 1;
-            }else if(val1 < val2){
-                return 2;
-            }else{
-                return 3;
+                msg =  1;
+            } else if (val1 < val2){
+                msg = 2;
             }
-        }else {
-            return 3;
+        }else{
+            if(val1 == 1 && val2 != 1){
+                msg =  1;
+            }else if(val1 != 1 && val2 == 1){
+                msg =  2;
+            }
         }
+        return msg;
     }
 }
 
@@ -305,10 +285,22 @@ class Full extends PokerCombination {
     }
     compare(ful){
         let msg = 3,
-        threeOkVal1 = this.arr[0].val,
-        threeOkVal2 = ful.arr[0].val,
-        pVal1 = this.arr[3].val,
-        pVal2 = ful.arr[3].val;
+        threeOkVal1 = 0,
+        threeOkVal2 = 0,
+        pVal1 = 0,
+        pVal2 = 0;
+
+        if(this.arr.length == 2){
+            threeOkVal1 = this.arr[0][0].val;
+            threeOkVal2 = ful.arr[0][0].val;
+            pVal1 = this.arr[1][0].val,
+            pVal2 = ful.arr[1][0].val;
+        }else{
+            threeOkVal1 = this.arr[0].val,
+            threeOkVal2 = ful.arr[0].val,
+            pVal1 = this.arr[3].val,
+            pVal2 = ful.arr[3].val;
+        }
 
         if(threeOkVal1 == 1 && threeOkVal2 != 1){
             console.log("P1 has an higher full than P2");
@@ -335,7 +327,8 @@ class Full extends PokerCombination {
                     console.log("P1 and P2 has the same three of a kind but P2 has a better pair");
                     msg = 2;
                 }
-                if(pVal2 == pVal2) {
+                if(pVal1 == pVal2) {
+                    debugger;
                     console.log("P2 and P2 has exactly the same full !!!");
                     msg = 3;
                 }
